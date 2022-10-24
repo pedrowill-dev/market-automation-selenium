@@ -29,21 +29,25 @@ class ProcessMarketDemo:
       button = self.driver.find_element(By.ID, "login-button")
       button.submit()
   
+  def process_market(self, process):
+    if process == 'shopping_cart_container':
+        self.driver.find_element(By.ID, process).click()
+        sleep(1)
+    elif process == 'continue':
+      for field in data:
+        field_dt = self.driver.find_element(By.ID, field)
+        field_dt.send_keys(data[field])
+        sleep(1)
+      btnContinue = self.driver.find_element(By.ID, process)
+      btnContinue.click()
+    elif process == 'finish':
+      self.driver.find_element(By.ID, process).click()
+      sleep(1)
+    else:
+      self.driver.find_element(By.ID, process).click()
+      sleep(1)
+    
+
   def handle(self):
     for process in processes_market:
-      if process == 'shopping_cart_container':
-        self.driver.find_element(By.ID, process).click()
-        sleep(1)
-      elif process == 'continue':
-        for field in data:
-          field_dt = self.driver.find_element(By.ID, field)
-          field_dt.send_keys(data[field])
-          sleep(1)
-        btnContinue = self.driver.find_element(By.ID, process)
-        btnContinue.click()
-      elif process == 'finish':
-        self.driver.find_element(By.ID, process).click()
-        sleep(1)
-      else:
-        self.driver.find_element(By.ID, process).click()
-        sleep(1)
+      self.process_market(process)
